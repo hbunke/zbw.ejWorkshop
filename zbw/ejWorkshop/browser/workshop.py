@@ -9,7 +9,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 #from zope.interface import Interface
 #from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
+from five.formlib.formbase import PageForm
+from zope.formlib import form
 
+from zbw.ejWorkshop.interfaces import IWorkshopParticipant, IParticipantManager
 
 class FolderView(BrowserView):
     """
@@ -47,4 +50,41 @@ class ParticipantsView(BrowserView):
         return [brain.getObject() for brain in brains]
 
 
+#class ParticipantForm(BrowserView):
+#   """
+#   without any form framework
+#   """
+#   
+#   template = ViewPageTemplateFile("regform.pt")
+
+#   def __call__(self):
+#       #self.request.set('disable_border', True)
+#       return self.template()
+
+class ParticipantForm(PageForm):
+    """
+    using zope.formlib
+    """
+    form_fields = form.Fields(IWorkshopParticipant)
+    #result_template = ViewPageTemplateFile('feedback_result.pt')
+
+    label = u"Workshop Registration"
+
+    @form.action("register")
+    def register(self, action, data):
+        """
+        calling an adapter to store participant data
+        """
+        
+        folder = self.context
+        manager = IParticipantManager(folder)
+        manager.add(data)
+        
+        message = manager.status_message
+        self.context.plone_utils.addPortalMessage(message)
+        url  = self.context.absolute_url()
+        self.request.response.redirect(url)
+
     
+    
+

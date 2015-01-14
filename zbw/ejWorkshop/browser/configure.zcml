@@ -14,6 +14,13 @@
         class=".workshop.FolderView"
         permission="zope2.Public"
         />
-    
 
+    <browser:page
+        name="register_participant"
+        for="..interfaces.IWorkshopFolder"
+        class=".workshop.ParticipantForm"
+        permission="zope2.Public"
+        />
+
+    
 </configure>

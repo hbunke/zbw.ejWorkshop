@@ -6,7 +6,7 @@
       </property>
  <property name="content_icon">document_icon.gif</property>
  <property name="content_meta_type">WorkshopParticipant</property>
- <property name="product">eJournal</property>
+ <property name="product">zbw.ejWorkshop</property>
  <property name="factory">addWorkshopParticipant</property>
  <property name="immediate_view">base_view</property>
  
@@ -15,7 +15,7 @@
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
- <alias from="edit" to="@@edit_participant"/>
+ <alias from="edit" to="base_edit"/>
  <alias from="(Default)" to="base_view"/>
 
  

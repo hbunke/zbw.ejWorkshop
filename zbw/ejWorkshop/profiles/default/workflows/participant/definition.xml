@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="ejsubscriber_workflow"
+             title="ejSubscriber Workflow" description=""
+             state_variable="review_state"
+             initial_state="waiting">
+
+
+
+    <permission>Access contents information</permission>
+    <permission>Modify portal content</permission>
+    <permission>View</permission>
+
+    <!-- states -->
+    <state state_id="active" title="Active (Subscriber will get e-mails)">
+        <exit-transition transition_id="deactivate"/>
+
+        <permission-map name="Access contents information"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+        <permission-map name="Modify portal content"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+        <permission-map name="View"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+    </state>
+
+    <state state_id="deactive" title="Deactive (Subscriber will not get e-mails)">
+        <exit-transition transition_id="activate" />
+        <exit-transition transition_id="reactivate" />
+
+        <permission-map name="Access contents information"
+            acquired="True">
+        </permission-map>
+
+        <permission-map name="Modify portal content"
+            acquired="True">
+        </permission-map>
+
+        <permission-map name="View"
+            acquired="True">
+        </permission-map>
+
+    </state>
+
+    <state state_id="waiting" title="Waiting for Activation">
+        <exit-transition transition_id="activate" />
+
+    <permission-map name="Access contents information"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+        <permission-map name="Modify portal content"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+        <permission-map name="View"
+            acquired="True">
+            <permission-role>Anonymous</permission-role>
+        </permission-map>
+
+    </state>
+
+    <!-- transitions -->
+
+    <transition transition_id="activate" title="Activate"
+        new_state="active" trigger="USER"
+        before_script="" after_script="">
+        <action url="" category="workflow">Activate</action>
+        <guard>
+            <guard-permission>View</guard-permission>
+        </guard>
+    </transition>
+    
+    <transition transition_id="deactivate" title="Deactivate"
+        new_state="deactive" trigger="USER"
+        before_script="" after_script="">
+        <action url="" category="workflow">Deactivate</action>
+        <guard>
+            <guard-permission>Manage portal</guard-permission>
+        </guard>
+    </transition>
+
+    <transition transition_id="reactivate" title="Reactivate"
+        new_state="active" trigger="USER"
+        before_script="" after_script="">
+        <action url="" category="workflow">Activate</action>
+        <guard>
+            <guard-permission>Manage portal</guard-permission>
+        </guard>
+    </transition>
+
+ <!-- variables -->
+
+    <variable variable_id="action" for_catalog="False"
+                for_status="True" update_always="True">
+        <description>The last transition</description>
+        <default>
+        
+        <expression>transition/getId|nothing</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    
+    <variable variable_id="actor" for_catalog="False"
+                for_status="True" update_always="True">
+        <description>The ID of the user who performed the last transition</description>
+        <default>
+        
+        <expression>user/getId</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+
+    <variable variable_id="comments" for_catalog="False"
+                for_status="True" update_always="True">
+        <description>Comments about the last transition</description>
+        <default>
+        
+        <expression>python:state_change.kwargs.get('comment', '')</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+
+    <variable variable_id="review_history" for_catalog="False"
+                for_status="False" update_always="False">
+        <description>Provides access to workflow history</description>
+        <default>
+        
+        <expression>state_change/getHistory</expression>
+        </default>
+        <guard>
+        <guard-permission>Request review</guard-permission>
+        <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </variable>
+
+    <variable variable_id="time" for_catalog="False"
+                for_status="True" update_always="True">
+        <description>Time of the last transition</description>
+        <default>
+        
+        <expression>state_change/getDateTime</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+
+
+
+</dc-workflow>         
