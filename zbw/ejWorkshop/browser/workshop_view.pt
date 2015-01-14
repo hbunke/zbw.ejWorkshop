@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eJournal">
+ 
+
+      <body>
+
+<div metal:fill-slot="main">
+<metal:main_macro define-macro="main">
+    <metal:body define-macro="body_macro">
+
+        <h1 tal:content="context/Title" />
+
+    
+       <!--TODO we need a picture here! -->
+  <!--TODO we need a picture here! -->
+<!--
+        <p><span tal:content="python:len(authors)" /> Authors
+            <tal:block tal:define="isManager python: checkPermission('Manage portal', here)"
+                tal:condition="isManager">
+                <a href="email_list">| [email list]</a>
+            </tal:block>
+</p>
+-->        
+    
+<div id="introduction" tal:content="structure context/introduction" />
+
+<p><a
+        href="http://localhost:8888/eJournal/SchoComm2014/createObject?type_name=WorkshopParticipant">Register
+        [TEST!]</a></p>
+
+     </metal:body>
+      
+    <tal:comment tal:replace="nothing">
+    <!-- don't remove these two, otherweise standard plone behaviour will list
+         folder contents again -->
+    </tal:comment>
+    <div metal:define-macro="folderlisting" />
+    <div metal:define-macro="footer" />
+
+</metal:main_macro>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<rolemap>
+  <roles>
+    <role name="Anonymous"/>
+    <role name="Authenticated"/>
+    <role name="Contributor"/>
+    <role name="Editor"/>
+    <role name="Manager"/>
+    <role name="Member"/>
+    <role name="Owner"/>
+    <role name="Reader"/>
+    <role name="Reviewer"/>
+  </roles>
+
+  <!--XXX Achtung: die standard permissions sind hier nicht gesetzt! deshalb
+       hatten alle in config.py nicht gelisteten types keine Berechtigungen.
+       Deshalb hier jetzt eine standard permission (manage content) und in
+       config explizites auflisten aller content types. 
+       
+       Alternative: standard permissions (add portal content etc.) hier mit
+    aufnehmen -->
+    
+  <permissions>
+
+    
+    <permission name="zbw.ejWorkshop: Add Workshop Participant"
+        acquire="False">
+        <role name="Manager" />
+        <role name="Anonymous" />
+    </permission>
+
+    <permission name="zbw.ejWorkshop: Add Workshop Folder"
+        acquire="False">
+        <role name="Manager" />
+    </permission>
+
+       
+
+
+  </permissions>
+
+   
+</rolemap>

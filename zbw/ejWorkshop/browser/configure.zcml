@@ -1,0 +1,19 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+
+           <include package="plone.app.contentmenu" />
+           <include package="collective.autopermission" />
+    
+    
+           
+    <browser:page
+        name="WorkshopView"
+        for="..interfaces.IWorkshopFolder"
+        class=".workshop.FolderView"
+        permission="zope2.Public"
+        />
+    
+
+</configure>
