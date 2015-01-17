@@ -16,11 +16,25 @@
         />
 
     <browser:page
-        name="register_participant"
+        name="register"
         for="..interfaces.IWorkshopFolder"
         class=".workshop.ParticipantForm"
         permission="zope2.Public"
         />
+    
+    <browser:page
+        for = "..interfaces.IWorkshopParticipant"            
+        name = "confirm"
+        class = ".workshop.Participant"
+        attribute ="confirm"         
+  	    permission = "zope2.Public" />
 
     
+    <browser:page
+        name="participants"
+        for="..interfaces.IWorkshopFolder"
+        class=".workshop.ParticipantsView"
+        permission="cmf.ManagePortal" 
+        />
+
 </configure>

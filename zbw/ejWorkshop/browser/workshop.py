@@ -11,7 +11,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from five.formlib.formbase import PageForm
 from zope.formlib import form
-
+from plone.memoize.instance import memoize
 from zbw.ejWorkshop.interfaces import IWorkshopParticipant, IParticipantManager
 
 class FolderView(BrowserView):
@@ -31,23 +31,51 @@ class ParticipantsView(BrowserView):
     custom view for workshop participants
     """
     
-    template = ViewPageTemplateFile("workshop_participants.pt")
+    template = ViewPageTemplateFile("participants.pt")
 
     def __call__(self):
         #self.request.set('disable_border', True)
         return self.template()
 
 
-    def get_participants(self):
+    @memoize
+    def get_active_participants(self):
         """
-        returns a sorted list of all participants
+        returns a list of confirmed participants
         """
         #TODO: as soon as we have a second workshop we also have to query the
         #path or any arbituary other ID!
         catalog = getToolByName(self, "portal_catalog")                    
-        brains = catalog(portal_type="WorkshopParticipant")
+        brains = catalog(portal_type="WorkshopParticipant",
+                        review_state="active")
         
         return [brain.getObject() for brain in brains]
+
+
+    @memoize
+    def get_waiting_participants(self):
+        """
+        returns a list of unconfirmed participants
+        """
+        
+        #TODO: as soon as we have a second workshop we also have to query the
+        #path or any arbituary other ID!
+        catalog = getToolByName(self, "portal_catalog")                    
+        brains = catalog(portal_type="WorkshopParticipant",
+                        review_state="waiting")
+        
+        return [brain.getObject() for brain in brains]
+
+    
+    def get_dinner_participants(self):
+        """
+        """
+        participants = self.get_active_participants()
+        no = 0
+        for p in participants:
+            if p.getDinner() is True:
+                no+=1
+        return no
 
 
 #class ParticipantForm(BrowserView):
@@ -86,5 +114,20 @@ class ParticipantForm(PageForm):
         self.request.response.redirect(url)
 
     
-    
+class Participant(BrowserView):
+    """
+    participant management
+    """
+
+    def confirm(self):
+        """
+        """
+        pm = IParticipantManager(self.context)
+        pm.activate()
+        status = pm.status
+        
+        self.context.plone_utils.addPortalMessage(status)
+        url = self.aq_inner.aq_parent.aq_parent.absolute_url()
+        return self.request.response.redirect(url)
+
 

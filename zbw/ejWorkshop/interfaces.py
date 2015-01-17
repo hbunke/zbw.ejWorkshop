@@ -3,19 +3,30 @@ from zope import schema
 
 
 
+class IParticipantAdded(Interface):
+    """
+    event marker interface
+    """
+
+class IParticipantActivated(Interface):
+    """
+    event marker interface
+    """
+
+
 class IParticipantManager(Interface):
     """
-    manages storage and validation of participant registration
+    storage and validation of participant registration
     """
 
 class IWorkshopFolder(Interface):
     """
-    Interface for contenttype WorkshopFolder
+    Contenttype WorkshopFolder
     """
 
 class IWorkshopParticipant(Interface):
     """
-    Interface for Workshop Participant
+    Contenttype WorkshopParticipant
     """
     
     firstname = schema.TextLine(

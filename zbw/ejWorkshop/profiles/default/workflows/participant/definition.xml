@@ -11,7 +11,7 @@
     <permission>View</permission>
 
     <!-- states -->
-    <state state_id="active" title="Active (Subscriber will get e-mails)">
+    <state state_id="active" title="Active (Registered Participant)">
         <exit-transition transition_id="deactivate"/>
 
         <permission-map name="Access contents information"
