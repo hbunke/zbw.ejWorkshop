@@ -1,0 +1,68 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+>
+<body>
+
+     
+    
+<div metal:define-macro="portlet"
+>
+
+<tal:block tal:define="view context/workshop_portlet_view;
+    root view/root;
+    isManager view/isManager"
+           >
+
+
+           <dl class="portlet"
+               style="font-size:125%;
+               padding-left:12px;"
+    id="portlet-workshop"
+   >
+    
+
+    <dt class="portletHeader" style="padding-right:10px;">
+        
+            Workshop Info
+        
+    </dt>
+        
+    <dd class="portletItem odd" >
+        <ul class="visualNoMarker"
+            >
+            <li><a style="font-size:100%; color:#800000; font-weight:bold"
+                    tal:attributes="href string:${root}/register">>> Register &lt;&lt; </a>
+            </li>
+            <li tal:condition="isManager">
+                <a tal:attributes="href string:${root}/participants">Participants</a>
+            </li>
+        </ul>
+
+    </dd>
+
+    <dd class="portletItem odd" style="margin-top:-9pt;">
+        <ul class="visualNoMarker">
+            <tal:block tal:define="pages view/folder_content">
+                <li><a tal:attributes="href root">Home</a></li>    
+            <div tal:repeat="page pages">
+                <li><a tal:attributes="href string:${root}/${page/id}" tal:content="page/Title" />
+                </li>
+            </div>
+        </tal:block>
+            
+    </dd>
+
+    <dd class="portletFooter">
+        
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>
+
+</tal:block>
+
+
+</div>
+
+</body>
+</html>

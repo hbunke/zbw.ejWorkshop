@@ -10,7 +10,10 @@
 <metal:main_macro define-macro="main">
     <metal:body define-macro="body_macro">
 
-        <h1 tal:content="context/Title" />
+        <h1 style="font-size:24px"
+            
+            tal:content="context/Title" 
+            />
 
     
        <!--TODO we need a picture here! -->
@@ -26,11 +29,8 @@
     
 <div id="introduction" tal:content="structure context/introduction" />
 
-<p><a
-        href="http://localhost:8888/eJournal/SchoComm2014/createObject?type_name=WorkshopParticipant">Register
-        [TEST!]</a></p>
 
-     </metal:body>
+</metal:body>
       
     <tal:comment tal:replace="nothing">
     <!-- don't remove these two, otherweise standard plone behaviour will list

@@ -10,7 +10,7 @@ from zbw.ejWorkshop.events import ParticipantAdded, ParticipantActivated
 VALID = u"You have successfully registered. Shortly you will get an activation \
         e-mail. Please follow its instructions to activate your registration."
 NOT_VALID= u"Sorry, you have given an invalid e-mail address."
-ALREADY_REGISTERED = u"Your e-mail address has already been registered."
+ALREADY_REGISTERED = u"The given e-mail address has already been registered."
 
 ACTIVATED = u"Your registration has been activated. We have sent you an email \
             with the confirmation as well as further information"
