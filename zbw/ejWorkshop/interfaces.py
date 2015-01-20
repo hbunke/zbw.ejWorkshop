@@ -57,7 +57,8 @@ class IWorkshopParticipant(Interface):
 
     postal = schema.Text(
             title=u"Postal Address",
-            required=True
+            required=True,
+            
             )
 
     dinner = schema.Bool(

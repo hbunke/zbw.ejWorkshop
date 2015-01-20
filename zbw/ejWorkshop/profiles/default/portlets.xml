@@ -10,7 +10,7 @@
 
 <!--XXX setting category='content_type' does for some reason not work here. So
      we have to hardcode the path for now -->
-<assignment name="portlet-workshop" category="context" key="SchoComm2014"
+<assignment name="portlet-workshop" category="context" key="/scholce15"
     manager="plone.rightcolumn" type="portlets.Classic">
   <property name="macro">portlet</property>
   <property name="template">portlet_workshop</property>

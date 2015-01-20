@@ -6,20 +6,29 @@
            <include package="plone.app.contentmenu" />
            <include package="collective.autopermission" />
     
-    
-           
+<!--XXX we have *strange* security problems with the view of the workshop folder.
+     when in review_state 'private' anonymous can read the navigation portlet
+     and the introduction. All other content and files (js, css) is hidden.
+     No forwarding to login, either.
+
+     So as a workaround we set all views to manager for
+     testing phase 
+
+     set to zope.Public when finished
+     -->
+          
     <browser:page
         name="WorkshopView"
         for="..interfaces.IWorkshopFolder"
         class=".workshop.FolderView"
-        permission="zope2.Public"
+        permission="cmf.ManagePortal"
         />
 
     <browser:page
         name="register"
         for="..interfaces.IWorkshopFolder"
         class=".workshop.ParticipantForm"
-        permission="zope2.Public"
+        permission="cmf.ManagePortal"
         />
     
     <browser:page
@@ -27,7 +36,7 @@
         name = "confirm"
         class = ".workshop.Participant"
         attribute ="confirm"         
-  	    permission = "zope2.Public" />
+  	    permission = "zope.Public" />
 
     
     <browser:page
@@ -41,7 +50,7 @@
         name="workshop_portlet_view"
         for="*"
         class=".portlet.View"
-        permission="zope2.Public"
+        permission="zope.Public"
         />
 
 </configure>

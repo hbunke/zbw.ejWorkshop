@@ -31,7 +31,7 @@
         <ul class="visualNoMarker"
             >
             <li><a style="font-size:100%; color:#800000; font-weight:bold"
-                    tal:attributes="href string:${root}/register">>> Register &lt;&lt; </a>
+                    tal:attributes="href string:${root}/register">>> Registration &lt;&lt; </a>
             </li>
             <li tal:condition="isManager">
                 <a tal:attributes="href string:${root}/participants">Participants</a>
@@ -49,8 +49,21 @@
                 </li>
             </div>
         </tal:block>
-            
+    </ul>   
     </dd>
+
+    <tal:block
+        tal:repeat="news view/news">
+        <dd class="portletItem odd" style="font-size:14px; line-height:normal">
+            <a tal:attributes="href news/absolute_url" tal:content="news/Title" /><br />
+            <span style="color:#4B4B4B; font-size:12px;" tal:content="news/Description" />
+        </dd>
+    </tal:block>
+            
+                
+            
+       
+
 
     <dd class="portletFooter">
         

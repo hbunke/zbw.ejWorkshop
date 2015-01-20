@@ -13,6 +13,8 @@ from five.formlib.formbase import PageForm
 from zope.formlib import form
 from plone.memoize.instance import memoize
 from zbw.ejWorkshop.interfaces import IWorkshopParticipant, IParticipantManager
+from zope.app.form.browser import TextAreaWidget as _TextAreaWidget
+
 
 class FolderView(BrowserView):
     """
@@ -78,16 +80,14 @@ class ParticipantsView(BrowserView):
         return no
 
 
-#class ParticipantForm(BrowserView):
-#   """
-#   without any form framework
-#   """
-#   
-#   template = ViewPageTemplateFile("regform.pt")
 
-#   def __call__(self):
-#       #self.request.set('disable_border', True)
-#       return self.template()
+#see http://docs.plone.org/old-reference-manuals/formlib/customtemplate.html 
+#for this approach to customize formlib widgets
+def TextAreaWidget(field, request):
+    widget = _TextAreaWidget(field, request)
+    widget.height = 5
+    widget.width = 40
+    return widget
 
 class ParticipantForm(PageForm):
     """
@@ -97,8 +97,9 @@ class ParticipantForm(PageForm):
     #result_template = ViewPageTemplateFile('feedback_result.pt')
 
     label = u"Workshop Registration"
+    form_fields['postal'].custom_widget = TextAreaWidget
 
-    @form.action("register")
+    @form.action("Register")
     def register(self, action, data):
         """
         calling an adapter to store participant data

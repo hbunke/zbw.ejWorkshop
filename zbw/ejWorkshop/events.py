@@ -70,10 +70,10 @@ def mail_participant_activated(event):
 
     text = """Dear <fullname>,
 
-you've been successfully registered with your email address to the workshop
-"The Future of Scholarly Communication in Economics". 
+you've been successfully registered with your email address <email> to the
+workshop "The Future of Scholarly Communication in Economics". 
 
-[Please stay tuned for more information....]
+[Please stay tuned for more information]
 
 Many thanks,
 

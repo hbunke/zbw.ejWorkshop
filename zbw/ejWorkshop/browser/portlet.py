@@ -42,4 +42,23 @@ class View(BrowserView):
         else:
             return self.context.aq_inner.aq_parent.absolute_url()
 
+    
+    @memoize
+    def news(self):
+        """
+        """
+        #catalog = getToolByName(self, 'portal_catalog')
+        #brains = catalog(portal_type="News Item", sort_on='created',
+        #        sort_order='reverse', Subject='workshop2015')
         
+        if self.context.portal_type=="WorkshopFolder":
+            root = self.context
+        else:
+            root = self.context.aq_inner.aq_parent
+
+        folder_path = '/'.join(root.getPhysicalPath())
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brains = catalog(path={'query': folder_path, 'depth' : 1},
+                portal_type="News Item")
+
+        return [brain.getObject() for brain in brains]
