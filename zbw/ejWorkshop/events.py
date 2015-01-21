@@ -87,7 +87,7 @@ The organizing team
     
     header  = "From: %s\n" % settings.notification_from
     header += "To: %s\n"  % object.getEmail()
-    header += "Subject: Workshop registration successful"
+    header += "Subject: Workshop registration successful\n"
     header += "Content-Type: text/plain; charset=utf-8\n\n"
     message = header + message
     
