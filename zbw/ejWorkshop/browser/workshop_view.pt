@@ -49,9 +49,7 @@
 </div>
     
     
-<div id="introduction" tal:content="structure context/introduction" 
-    style="margin-top:-25px;"
-    />
+<div id="introduction" tal:content="structure context/introduction" />
 
 
 </metal:body>
