@@ -10,24 +10,48 @@
 <metal:main_macro define-macro="main">
     <metal:body define-macro="body_macro">
 
+        <!--
         <h1 style="font-size:24px"
             
             tal:content="context/Title" 
             />
+-->
+<div style="background:url(zbw_aussen2.png); height:360px; 
+            width:541px;
+            background-repeat:no-repeat">
+   
+    <div style="margin-left:0px;
+                background-color:white;
+                opacity:0.6;
+                filter: alpha(opacity=60);
+                font-size:30px;
+                color:black;
+                padding-left:0px;
+                text-align: center;
+                font-weight:500;
+                ">
+                The Future of <br />Scholarly Communications in Economics
+     </div>
 
+    <div style="background-color:white;
+                opacity:0.7; 
+                filter: alpha(opacity=70); 
+                font-size:24px;
+                color:black;
+                position:relative;
+                bottom:0px;
+                top:265px;
+                text-align:center;"
+                >
+                Workshop, ZBW Hamburg, 30.-31. March 2015
+    </div>
+
+</div>
     
-       <!--TODO we need a picture here! -->
-  <!--TODO we need a picture here! -->
-<!--
-        <p><span tal:content="python:len(authors)" /> Authors
-            <tal:block tal:define="isManager python: checkPermission('Manage portal', here)"
-                tal:condition="isManager">
-                <a href="email_list">| [email list]</a>
-            </tal:block>
-</p>
--->        
     
-<div id="introduction" tal:content="structure context/introduction" />
+<div id="introduction" tal:content="structure context/introduction" 
+    style="margin-top:-25px;"
+    />
 
 
 </metal:body>

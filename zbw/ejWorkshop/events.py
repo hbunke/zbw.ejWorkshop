@@ -33,10 +33,10 @@ def mail_participant_added(event):
 
     text = """Dear <fullname>,
 
-thank you for your request to register to the workshop "The Future of Scholarly
-Communication in Economics".
+thank you for your request to register for the workshop "The Future of
+Scholarly Communication in Economics".
 
-To confirm your registration, please click once on the following link:
+To confirm your registration, please click on the following link:
 
 <activate_url>
 
@@ -73,6 +73,18 @@ def mail_participant_activated(event):
 you've been successfully registered with your email address <email> to the
 workshop "The Future of Scholarly Communication in Economics". 
 
+This is your data:
+    Firstname: <firstname>
+    Surname: <surname>
+    Organisation: <organisation>
+    Email: <email>
+    Homepage: <homepage>
+    Postal Address: <postal>
+    Dinner Participation: <dinner>
+
+If you have any questions please send them to
+editorial-office@economics-ejournal.org .
+
 Many thanks,
 
 The organizing team
@@ -82,6 +94,21 @@ The organizing team
 
     message = text.replace("<fullname>", object.getFullname())
     message = message.replace("<email>", object.getEmail())
+    message = message.replace("<firstname>", object.getFirstname())
+    message = message.replace("<surname>", object.getSurname())
+    message = message.replace("<organisation>", object.getOrganisation())
+    message = message.replace("<postal>", object.getPostal())
+
+    if object.getHomepage():
+        message = message.replace("<homepage>", object.getHomepage())
+    else:
+        message = message.replace("<homepage>", "None")
+
+    if object.getDinner():
+        message = message.replace("<dinner>", "Yes")
+    else:
+        message = message.replace("<dinner>", "No")
+
     
     header  = "From: %s\n" % settings.notification_from
     header += "To: %s\n"  % object.getEmail()

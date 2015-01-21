@@ -21,7 +21,7 @@
         name="WorkshopView"
         for="..interfaces.IWorkshopFolder"
         class=".workshop.FolderView"
-        permission="cmf.ManagePortal"
+        permission="zope.Public"
         />
 
     <browser:page

@@ -14,7 +14,7 @@ from zope.formlib import form
 from plone.memoize.instance import memoize
 from zbw.ejWorkshop.interfaces import IWorkshopParticipant, IParticipantManager
 from zope.app.form.browser import TextAreaWidget as _TextAreaWidget
-
+from zope.app.form.browser import TextWidget as _TextWidget
 
 class FolderView(BrowserView):
     """
@@ -36,7 +36,7 @@ class ParticipantsView(BrowserView):
     template = ViewPageTemplateFile("participants.pt")
 
     def __call__(self):
-        #self.request.set('disable_border', True)
+        self.request.set('disable_border', True)
         return self.template()
 
 
@@ -49,7 +49,8 @@ class ParticipantsView(BrowserView):
         #path or any arbituary other ID!
         catalog = getToolByName(self, "portal_catalog")                    
         brains = catalog(portal_type="WorkshopParticipant",
-                        review_state="active")
+                        review_state="active",
+                        sort_on="created", sort_order="descending")
         
         return [brain.getObject() for brain in brains]
 
@@ -89,6 +90,11 @@ def TextAreaWidget(field, request):
     widget.width = 40
     return widget
 
+def TextWidgetLarge(field, request):
+    widget = _TextWidget(field, request)
+    widget.displayWidth = 50
+    return widget
+
 class ParticipantForm(PageForm):
     """
     using zope.formlib
@@ -98,6 +104,7 @@ class ParticipantForm(PageForm):
 
     label = u"Workshop Registration"
     form_fields['postal'].custom_widget = TextAreaWidget
+    form_fields['homepage'].custom_widget = TextWidgetLarge
 
     @form.action("Register")
     def register(self, action, data):

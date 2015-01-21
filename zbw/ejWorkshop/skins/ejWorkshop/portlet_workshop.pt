@@ -16,7 +16,8 @@
 
            <dl class="portlet"
                style="font-size:125%;
-               padding-left:12px;"
+               padding-left:12px;
+               "
     id="portlet-workshop"
    >
     
@@ -27,23 +28,23 @@
         
     </dt>
         
-    <dd class="portletItem odd" >
+    <dd class="portletItem odd" tal:condition="isManager">
         <ul class="visualNoMarker"
             >
-            <li><a style="font-size:100%; color:#800000; font-weight:bold"
-                    tal:attributes="href string:${root}/register">>> Registration &lt;&lt; </a>
-            </li>
-            <li tal:condition="isManager">
+            <li>
                 <a tal:attributes="href string:${root}/participants">Participants</a>
             </li>
         </ul>
-
     </dd>
 
-    <dd class="portletItem odd" style="margin-top:-9pt;">
+    <dd class="portletItem odd">
         <ul class="visualNoMarker">
             <tal:block tal:define="pages view/folder_content">
-                <li><a tal:attributes="href root">Home</a></li>    
+                <li><a tal:attributes="href root">Introduction</a></li>
+                <li><a 
+                    tal:attributes="href string:${root}/register">Registration</a>
+                </li>
+
             <div tal:repeat="page pages">
                 <li><a tal:attributes="href string:${root}/${page/id}" tal:content="page/Title" />
                 </li>
@@ -60,8 +61,25 @@
         </dd>
     </tal:block>
             
-                
-            
+    
+    <tal:logos>
+        <dd class="portletItem odd" style="text-align:center; margin-top:50px;">
+            <p><a href="https://www.ifw-kiel.de/">
+                    <img src="partner-logo.ifw.jpg" alt="Logo IfW" />
+                </a>
+            </p>
+
+            <p style="padding:12px 0px 12px 0px"><a href="http://zbw.eu" >
+                    <img src="logo_zbw.png" alt="Logo ZBW" />
+                </a>
+            </p>
+                        <p><a href="http://www.leibniz-science20.de/" >
+                    <img src="sci20.png" alt="Science20 Logo" />
+                </a>
+            </p>
+        </dd>
+    </tal:logos>
+                   
        
 
 

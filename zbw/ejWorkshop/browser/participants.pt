@@ -34,9 +34,10 @@
         </div>
 
 
-    <h2>Confirmed</h2>
+    
+        <tal:block tal:define="participants active_participants">
+        <h2 tal:condition="participants">Confirmed</h2>
 
-    <tal:block tal:define="participants active_participants">
         <div 
         metal:define-macro="participants_list"
         style="margin-top:10px; padding-left:25px;"
@@ -69,8 +70,9 @@
     </tal:block>
 
 
-    <h2>Waiting</h2>
+    
     <tal:block tal:define="participants waiting_participants">
+    <h2 tal:condition="participants">Waiting</h2>
         <metal:macro use-macro="template/macros/participants_list" />
     </tal:block>
 

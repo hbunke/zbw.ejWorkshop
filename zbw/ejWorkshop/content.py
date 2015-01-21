@@ -77,7 +77,7 @@ WorkshopParticipantSchema = atapi.BaseSchema.copy() + atapi.Schema((
     atapi.TextField(
         name="postal",
         widget=atapi.TextAreaWidget(
-            label="Postal Addresse",
+            label="Postal Address",
         )
     ),
 
