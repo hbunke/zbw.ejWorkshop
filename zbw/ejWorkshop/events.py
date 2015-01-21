@@ -73,8 +73,6 @@ def mail_participant_activated(event):
 you've been successfully registered with your email address <email> to the
 workshop "The Future of Scholarly Communication in Economics". 
 
-[Please stay tuned for more information]
-
 Many thanks,
 
 The organizing team
