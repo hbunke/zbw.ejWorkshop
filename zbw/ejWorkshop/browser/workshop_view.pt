@@ -18,7 +18,8 @@
 -->
 <div style="background:url(zbw_aussen2.png); height:360px; 
             width:541px;
-            background-repeat:no-repeat">
+            background-repeat:no-repeat;
+            position:relative;">
    
     <div style="margin-left:0px;
                 background-color:white;
@@ -29,7 +30,10 @@
                 padding-left:0px;
                 text-align: center;
                 font-weight:500;
-                ">
+                position:absolute;
+                top:0px;
+                width:100%;"
+                >
                 The Future of <br />Scholarly Communications in Economics
      </div>
 
@@ -38,10 +42,10 @@
                 filter: alpha(opacity=70); 
                 font-size:24px;
                 color:black;
-                position:relative;
+                position:absolute;
                 bottom:0px;
-                top:265px;
-                text-align:center;"
+                text-align:center;
+                width:100%;"
                 >
                 Workshop, ZBW Hamburg, 30.-31. March 2015
     </div>
