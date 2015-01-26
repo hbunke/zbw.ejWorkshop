@@ -65,16 +65,16 @@
     <tal:logos>
         <dd class="portletItem odd" style="text-align:center; margin-top:50px;">
             <p><a href="https://www.ifw-kiel.de/">
-                    <img src="partner-logo.ifw.jpg" alt="Logo IfW" />
+                    <img src="partner-logo.ifw.jpg" style="width:5em; height:5em" alt="Logo IfW" />
                 </a>
             </p>
 
             <p style="padding:12px 0px 12px 0px"><a href="http://zbw.eu" >
-                    <img src="logo_zbw.png" alt="Logo ZBW" />
+                    <img src="logo_zbw.png" alt="Logo ZBW" style="width:5em; height:2.5em;" />
                 </a>
             </p>
                         <p><a href="http://www.leibniz-science20.de/" >
-                    <img src="sci20.png" alt="Science20 Logo" />
+                    <img src="sci20.png" alt="Science20 Logo" style="width:5.8em; height:2.9em;"/>
                 </a>
             </p>
         </dd>
