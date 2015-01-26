@@ -16,7 +16,8 @@
             tal:content="context/Title" 
             />
 -->
-<div style="background:url(zbw_aussen2.png); height:360px; 
+<div style="background:url(zbw_aussen.jpg);
+            height:360px; 
             width:541px;
             background-repeat:no-repeat;
             position:relative;">
