@@ -78,13 +78,14 @@ def mail_participant_activated(event):
 you've been successfully registered with your email address <email> to the workshop "The Future of Scholarly Communication in Economics". 
 
 This is your data:
-    Firstname: <firstname>
-    Surname: <surname>
-    Organisation: <organisation>
-    Email: <email>
-    Homepage: <homepage>
-    Postal Address: <postal>
-    Dinner Participation: <dinner>
+
+Firstname: <firstname>
+Surname: <surname>
+Organisation: <organisation>
+Email: <email>
+Homepage: <homepage>
+Postal Address: <postal>
+Dinner Participation: <dinner>
 
 If you have any questions please send them to editorial-office@economics-ejournal.org .
 
