@@ -40,15 +40,27 @@
     <dd class="portletItem odd">
         <ul class="visualNoMarker">
             <tal:block tal:define="pages view/folder_content">
+
+
                 <li><a tal:attributes="href root">Introduction</a></li>
+                
+                <li><a tal:attributes="href string:${root}/programme">Programme</a></li>
+
                 <li><a 
                     tal:attributes="href string:${root}/register">Registration</a>
-                </li>
+            </li>
 
-            <div tal:repeat="page pages">
-                <li><a tal:attributes="href string:${root}/${page/id}" tal:content="page/Title" />
-                </li>
-            </div>
+            <li><a 
+                    tal:attributes="href string:${root}/travel-information">Travel Information</a>
+            </li>
+            <li><a 
+                    tal:attributes="href string:${root}/hotels">Hotels</a>
+            </li>
+
+            <li><a 
+                    tal:attributes="href string:${root}/contact">Contact</a>
+            </li>
+            
         </tal:block>
     </ul>   
     </dd>
