@@ -46,9 +46,11 @@
            <strong>
            <a 
                tal:attributes="href string:${participant/absolute_url}/"
-               tal:content="participant/getFullname"
+               
                style="font-size:14px"
-               />
+               ><span tal:replace="participant/getFirstname"/> <span tal:replace="participant/getSurname" />
+           </a>
+               
             </strong> 
             
             &lt;<span tal:replace="participant/getEmail" />&gt; <br />

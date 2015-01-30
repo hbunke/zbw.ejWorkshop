@@ -15,6 +15,9 @@ from plone.memoize.instance import memoize
 from zbw.ejWorkshop.interfaces import IWorkshopParticipant, IParticipantManager
 from zope.app.form.browser import TextAreaWidget as _TextAreaWidget
 from zope.app.form.browser import TextWidget as _TextWidget
+from AccessControl import getSecurityManager
+
+
 
 class FolderView(BrowserView):
     """
@@ -24,7 +27,10 @@ class FolderView(BrowserView):
     template = ViewPageTemplateFile("workshop_view.pt")
 
     def __call__(self):
-        #self.request.set('disable_border', True)
+        
+        is_manager =getSecurityManager().checkPermission('Manage portal', self.context)
+        if not is_manager:
+            self.request.set('disable_border', True)
         return self.template()
 
 
@@ -101,8 +107,11 @@ class ParticipantForm(PageForm):
     """
     form_fields = form.Fields(IWorkshopParticipant)
     #result_template = ViewPageTemplateFile('feedback_result.pt')
-
+    
+    #see http://docs.plone.org/old-reference-manuals/formlib/customtemplate.html
+    template = ViewPageTemplateFile('pageform.pt')
     label = u"Workshop Registration"
+    description=u''
     form_fields['postal'].custom_widget = TextAreaWidget
     form_fields['homepage'].custom_widget = TextWidgetLarge
 

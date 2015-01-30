@@ -31,7 +31,7 @@ def mail_participant_added(event):
     """
     object = event.object
 
-    text = """Dear <fullname>,
+    text = u"""Dear <firstname> <surname>,
 
 thank you for your request to register for the workshop "The Future of
 Scholarly Communication in Economics".
@@ -49,18 +49,25 @@ The organizing team
 (Workshop on The Future of Scholarly Communication in Economics)
 """
 
+    surname = object.getSurname()
+    surname = surname.decode('utf-8')
+    #surname = surname.encode('utf-8')
+
+    firstname = object.getFirstname()
+    firstname = firstname.decode('utf-8')
+    #firstname = firstname.encode('utf-8')
 
     message = text.replace("<email>", object.getEmail())
     message = message.replace("<activate_url>", "%s/confirm" % object.absolute_url())
-    message = message.replace("<fullname>", object.getFullname())
-        
-    header  = "From: %s\n" % settings.notification_from
-    header += "To: %s\n"  % object.getEmail()
-    header += "Subject: %s\n" % u"Workshop Registration: please activate"
-    header += "Content-Type: text/plain; charset=utf-8\n\n"
+    message = message.replace("<firstname>", firstname)
+    message = message.replace("<surname>", surname)        
+    header  = u"From: %s\n" % settings.notification_from
+    header += u"To: %s\n"  % object.getEmail()
+    header += u"Subject: %s\n" % u"Workshop Registration: please activate"
+    header += u"Content-Type: text/plain; charset=utf-8\n\n"
 
     mailtext = header+message
-    object.MailHost.send(mailtext)
+    object.MailHost.send(mailtext, encode="utf-8", charset="utf-8")
    
 
 def mail_participant_activated(event):
@@ -68,7 +75,7 @@ def mail_participant_activated(event):
     """
     object = event.object
 
-    text = """Dear <fullname>,
+    text = u"""Dear <firstname> <surname>,
 
 you've been successfully registered with your email address <email> to the
 workshop "The Future of Scholarly Communication in Economics". 
@@ -91,29 +98,29 @@ The organizing team
 (Workshop on The Future of Scholarly Communication in Economics)
 """
     
-
-    message = text.replace("<fullname>", object.getFullname())
-    message = message.replace("<email>", object.getEmail())
-    message = message.replace("<firstname>", object.getFirstname())
-    message = message.replace("<surname>", object.getSurname())
-    message = message.replace("<organisation>", object.getOrganisation())
-    message = message.replace("<postal>", object.getPostal())
+    
+    message = text.replace("<email>", object.getEmail())
+    message = message.replace("<firstname>", object.getFirstname().decode('utf-8'))
+    message = message.replace("<surname>", object.getSurname().decode('utf-8'))        
+    message = message.replace("<organisation>", object.getOrganisation().decode('utf-8'))
+    message = message.replace("<postal>", object.getPostal().decode('utf-8'))
 
     if object.getHomepage():
         message = message.replace("<homepage>", object.getHomepage())
     else:
-        message = message.replace("<homepage>", "None")
+        message = message.replace("<homepage>", u"None")
 
     if object.getDinner():
-        message = message.replace("<dinner>", "Yes")
+        message = message.replace("<dinner>", u"Yes")
     else:
-        message = message.replace("<dinner>", "No")
+        message = message.replace("<dinner>", u"No")
 
     
-    header  = "From: %s\n" % settings.notification_from
-    header += "To: %s\n"  % object.getEmail()
-    header += "Subject: Workshop registration successful\n"
-    header += "Content-Type: text/plain; charset=utf-8\n\n"
+    header  = u"From: %s\n" % settings.notification_from
+    header += u"To: %s\n"  % object.getEmail()
+    header += u"Subject: Workshop registration successful\n"
+    header += u"Content-Type: text/plain; charset=utf-8\n\n"
     message = header + message
     
-    object.MailHost.send(message)
+    object.MailHost.send(message, encode="utf-8", charset="utf-8")
+

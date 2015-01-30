@@ -123,26 +123,17 @@ class WorkshopParticipant(atapi.BaseContent):
     schema["title"].widget.visible = {"edit": "invisible", "view": "invisible"}
 
     
-    def getFullname(self):
-        """For the catalog.
-        """
-        #return self.Title()
+   #def getFullname(self):
+   #    """For the catalog.
+   #    """
+   #    #return self.Title()
+   #    import pdb; pdb.set_trace()
+   #    surname = self.getSurname()
+   #    firstname = self.getFirstname()
+   #    fullname = u"%s %s" %(firstname, surname)
 
-        fullname = u""
-        surname = self.getSurname()
-        firstname = self.getFirstname()
-        
-        if firstname != "":
-            fullname += firstname
-        if surname != "":
-            fullname += u" %s" %surname
+   #    return fullname
 
-        return fullname
-
-    def getTitle(self):
-        """
-        """
-        return self.getFullname()
     
  
 #class WorkshopParticipants(atapi.BaseFolder):
