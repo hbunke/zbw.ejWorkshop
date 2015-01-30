@@ -33,15 +33,13 @@ def mail_participant_added(event):
 
     text = u"""Dear <firstname> <surname>,
 
-thank you for your request to register for the workshop "The Future of
-Scholarly Communication in Economics".
+thank you for your request to register for the workshop "The Future of Scholarly Communication in Economics".
 
 To confirm your registration, please click on the following link:
 
 <activate_url>
 
-If you did not make this request, or it was made in error, please ignore this
-email.
+If you did not make this request, or it was made in error, please ignore this email.
 
 Many thanks,
 
@@ -77,8 +75,7 @@ def mail_participant_activated(event):
 
     text = u"""Dear <firstname> <surname>,
 
-you've been successfully registered with your email address <email> to the
-workshop "The Future of Scholarly Communication in Economics". 
+you've been successfully registered with your email address <email> to the workshop "The Future of Scholarly Communication in Economics". 
 
 This is your data:
     Firstname: <firstname>
@@ -89,8 +86,7 @@ This is your data:
     Postal Address: <postal>
     Dinner Participation: <dinner>
 
-If you have any questions please send them to
-editorial-office@economics-ejournal.org .
+If you have any questions please send them to editorial-office@economics-ejournal.org .
 
 Many thanks,
 
