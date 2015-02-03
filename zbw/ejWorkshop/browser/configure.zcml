@@ -28,7 +28,7 @@
         name="register"
         for="..interfaces.IWorkshopFolder"
         class=".workshop.ParticipantForm"
-        permission="cmf.ManagePortal"
+        permission="zope.Public"
         />
     
     <browser:page
