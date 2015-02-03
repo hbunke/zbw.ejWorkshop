@@ -41,7 +41,7 @@
          
         <div class="documentDescription" tal:content="view/description|nothing">Description</div>
 
-        <p> Please note: The workshop is <strong>free of charge</strong>, but there are 
+        <p> Please note: the workshop is <strong>free of charge</strong>, but there are 
             <strong>only 30
                 places </strong>
            available for participants. So please register only, if you are definitely coming to the workshop.

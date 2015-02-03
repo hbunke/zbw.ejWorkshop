@@ -44,7 +44,7 @@
 
                 <li><a tal:attributes="href root">Introduction</a></li>
                 
-                <li><a tal:attributes="href string:${root}/programme">Programme</a></li>
+                <li><a tal:attributes="href string:${root}/program">Program</a></li>
 
                 <li><a 
                     tal:attributes="href string:${root}/register">Registration</a>

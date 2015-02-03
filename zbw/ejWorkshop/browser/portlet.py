@@ -62,3 +62,5 @@ class View(BrowserView):
                 portal_type="News Item")
 
         return [brain.getObject() for brain in brains]
+
+
