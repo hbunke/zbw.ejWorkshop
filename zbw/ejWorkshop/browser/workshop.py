@@ -136,7 +136,7 @@ class ParticipantForm(PageForm):
         """
         checks for number of participants
         """
-        full = 37
+        full = 38
         catalog = getToolByName(self, "portal_catalog")                    
         brains = catalog(portal_type="WorkshopParticipant",
                         review_state="active",

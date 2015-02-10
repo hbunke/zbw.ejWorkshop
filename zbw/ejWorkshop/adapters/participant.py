@@ -129,7 +129,7 @@ class ParticipantManager:
         """
         checks for number of participants
         """
-        full = 37
+        full = 38
         catalog = getToolByName(self.context, "portal_catalog")                    
         brains = catalog(portal_type="WorkshopParticipant",
                         review_state="active",
