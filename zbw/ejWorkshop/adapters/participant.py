@@ -15,6 +15,8 @@ ALREADY_REGISTERED = u"The given e-mail address has already been registered."
 ACTIVATED = u"Your registration has been activated. We have sent you an email \
             with the confirmation as well as further information"
 ALREADY_ACTIVATED = u"Your registration has already been activated"
+FULL = u"You have successfully registered for the waiting list. We'll get back\
+        to you in case there will be a free place in the workshop. Thank you."
 
 
 class ParticipantManager:
@@ -25,7 +27,11 @@ class ParticipantManager:
         """
         """
         self.context = context
-        self.status_message = VALID
+        if self._full():
+            self.status_message = FULL
+        else:
+            self.status_message = VALID
+        
         self.status=""
         
     def add(self, data):
@@ -67,7 +73,8 @@ class ParticipantManager:
         participant.reindexObject()        
 
         # send added event
-        notify(ParticipantAdded(participant))
+        if not self._full():
+            notify(ParticipantAdded(participant))
                
         return True
         
@@ -118,4 +125,17 @@ class ParticipantManager:
         return code
 
 
+    def _full(self):
+        """
+        checks for number of participants
+        """
+        full = 37
+        catalog = getToolByName(self.context, "portal_catalog")                    
+        brains = catalog(portal_type="WorkshopParticipant",
+                        review_state="active",
+                        sort_on="created", sort_order="descending")
+        uptonow = len(brains)
+        if uptonow >= full:
+            return True
+        return False
 

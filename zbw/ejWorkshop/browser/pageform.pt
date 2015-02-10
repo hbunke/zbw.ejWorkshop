@@ -41,14 +41,30 @@
          
         <div class="documentDescription" tal:content="view/description|nothing">Description</div>
 
-        <p> Please note: the workshop is <strong>free of charge</strong>, but there are 
+
+        <tal:block tal:condition="not:view/full">
+
+            <p>Please note: the workshop is <strong>free of charge</strong>, but there are 
             <strong>only 30
                 places </strong>
            available for participants. So please register only, if you are definitely coming to the workshop.
-       </p>
+            </p>
 
-       <p>The <strong>Deadline</strong> for registration is <strong>15.03.2015</strong>.</p>
+            <p>The <strong>Deadline</strong> for registration is <strong>15.03.2015</strong>.</p>
+
+        </tal:block>
+
+        <tal:block tal:condition="view/full">
         
+            <p style="color:red; font-size:18px">The workshop is <strong>booked out</strong>, sorry! You can,
+                however, register for the waiting list. Should we have more free places we will contact you 
+                via email and ask you to confirm your registration.</p>
+            <p>&nbsp;</p>
+            <p style="font-size:24px; font-weight:600">Register for Waiting List</p>
+
+       </tal:block>
+        
+       
        <div id="content-core" style="margin-top:25px">
             <form action="." metal:define-macro="master"
                   tal:attributes="action request/URL;

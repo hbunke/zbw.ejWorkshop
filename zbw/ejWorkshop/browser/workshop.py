@@ -71,7 +71,8 @@ class ParticipantsView(BrowserView):
         #path or any arbituary other ID!
         catalog = getToolByName(self, "portal_catalog")                    
         brains = catalog(portal_type="WorkshopParticipant",
-                        review_state="waiting")
+                        review_state="waiting",
+                        sort_on="created", sort_order="ascending")
         
         return [brain.getObject() for brain in brains]
 
@@ -130,6 +131,22 @@ class ParticipantForm(PageForm):
         url  = self.context.absolute_url()
         self.request.response.redirect(url)
 
+
+    def full(self):
+        """
+        checks for number of participants
+        """
+        full = 37
+        catalog = getToolByName(self, "portal_catalog")                    
+        brains = catalog(portal_type="WorkshopParticipant",
+                        review_state="active",
+                        sort_on="created", sort_order="descending")
+        uptonow = len(brains)
+        if uptonow >= full:
+            return True
+        return False
+
+
     
 class Participant(BrowserView):
     """
@@ -146,5 +163,6 @@ class Participant(BrowserView):
         self.context.plone_utils.addPortalMessage(status)
         url = self.aq_inner.aq_parent.aq_parent.absolute_url()
         return self.request.response.redirect(url)
+
 
 
