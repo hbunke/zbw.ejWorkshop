@@ -60,6 +60,9 @@
             <li><a 
                     tal:attributes="href string:${root}/contact">Contact</a>
             </li>
+
+            <li><a tal:attributes="href string:${root}/presentations">Presentations</a>
+            </li>
             
         </tal:block>
     </ul>   
