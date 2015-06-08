@@ -46,16 +46,22 @@
                 
                 <li><a tal:attributes="href string:${root}/program">Program</a></li>
 
+                
+                <tal:comment replace="nothing">
+                <!-- off 2015-06-08 
+
                 <li><a 
                     tal:attributes="href string:${root}/register">Registration</a>
             </li>
 
-            <li><a 
+                        <li><a 
                     tal:attributes="href string:${root}/travel-information">Travel Information</a>
             </li>
             <li><a 
                     tal:attributes="href string:${root}/hotels">Hotels</a>
             </li>
+            -->
+            </tal:comment>
 
             <li><a 
                     tal:attributes="href string:${root}/contact">Contact</a>
