@@ -32,6 +32,10 @@ class FolderView(BrowserView):
         if not is_manager:
             self.request.set('disable_border', True)
         return self.template()
+    
+    def isManager(self):
+        return getSecurityManager().checkPermission('Manage portal', self.context)
+
 
 
 class ParticipantsView(BrowserView):
